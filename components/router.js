@@ -2,10 +2,13 @@ import React from 'react';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 
 // All Components
-// import Signup from '';
-// import Login from '';
 import Home from './screen/Home'
 import SignUp from './screen/SignUp'
+import Start from './screen/Start'
+import Game from './screen/Game'
+import EndWin from './screen/EndWin'
+import EndFail from './screen/EndFail'
+import Ready from './screen/Ready'
 
 export const RootStack = StackNavigator({
   Home: {
@@ -13,6 +16,21 @@ export const RootStack = StackNavigator({
   },
   SignUp: {
     screen: SignUp //filename
+  },
+  Start: {
+    screen: Start
+  },
+  Ready: {
+    screen: Ready
+  },
+  Game: {
+    screen: Game
+  },
+  EndWin: {
+    screen: EndWin
+  },
+  EndFail: {
+    screen: EndFail
   }
 })
 
