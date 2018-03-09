@@ -12,7 +12,10 @@ export default class Home extends React.Component {
     }
   }
 
+
+
   render() {
+    console.log(this.props)
     return (
       <View style={styles.body}>
 
@@ -29,7 +32,7 @@ export default class Home extends React.Component {
         <TextInput
           placeholder="your password" style={styles.input}
           onChangeText={(text) => this.setState({ password: text })}
-          value={this.state.email}
+          value={this.state.password}
         />
         <Button
           title='Log In'

@@ -1,13 +1,13 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import createLogger from 'redux-logger';
+import {createLogger} from 'redux-logger';
 import thunkMiddleWare from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension';
 
 import user from './user';
 import game from './game';
-import auth from './auth';
+//import auth from './auth';
 
-const reducer = combineReducers({ user, game, auth })
+const reducer = combineReducers({ user, game })
 const middleware = composeWithDevTools(applyMiddleware(thunkMiddleWare, createLogger({collapsed: true })))
 
 const store = createStore(reducer, middleware)
@@ -15,4 +15,4 @@ const store = createStore(reducer, middleware)
 export default store;
 export * from './user';
 export * from './game';
-export * from './auth';
+//export * from './auth';
