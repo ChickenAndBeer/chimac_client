@@ -1,5 +1,15 @@
 {
   "expo": {
     "sdkVersion": "25.0.0"
+  },
+  "packagerOpts": {
+    "assetExts": [
+      "ttf",
+      "mp4",
+      "otf",
+      "xml",
+      "obj",
+      "mtl"
+    ]
   }
 }
