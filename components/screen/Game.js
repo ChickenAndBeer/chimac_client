@@ -10,6 +10,13 @@ import ExpoTHREE from "expo-three"; // 2.0.2
 console.disableYellowBox = true;
 
 export default class Game extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      sceneShapes: []
+    }
+  }
+
   render() {
     return (
       <Expo.GLView
@@ -23,34 +30,40 @@ export default class Game extends React.Component {
   _onGLContextCreate = async (gl) => {
     const width = gl.drawingBufferWidth;
     const height = gl.drawingBufferHeight;
-
     const arSession = await this._glView.startARSessionAsync();
-
     const scene = new THREE.Scene();
     const camera = ExpoTHREE.createARCamera(arSession, width, height, 0.01, 1000);
     const renderer = ExpoTHREE.createRenderer({ gl });
     renderer.setSize(gl.drawingBufferWidth, gl.drawingBufferHeight);
-
     scene.background = ExpoTHREE.createARBackgroundTexture(arSession, renderer);
 
-    // Edit the box dimensions here and see changes immediately!
-    const geometry = new THREE.BoxGeometry(0.07, 0.07, 0.07);
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    const cube = new THREE.Mesh(geometry, material);
-    cube.position.z = -0.4;
-    scene.add(cube);
+   // const colors= ['0x7ac7fe', '#fa8072' ]
+    let renderedShape;
+
+    for (let i = 0; i<7; i++) {
+      const shape = new THREE.IcosahedronBufferGeometry(1.8, 0)
+      const material = new THREE.MeshBasicMaterial({ color: 0x7ac7fe });
+      renderedShape = new THREE.Mesh(shape, material);
+      renderedShape.position.z = Math.round(Math.random()*100)*-0.1;
+      renderedShape.position.y = Math.round(Math.random()*300)*0.1;
+      renderedShape.position.x = Math.round(Math.random()*300)*0.1;
+      this.state.sceneShapes.push(renderedShape)
+    }
+
+    for (let i= 0; i<this.state.sceneShapes.length; i++) {
+      scene.add(this.state.sceneShapes[i]);
+    }
 
     const animate = () => {
       requestAnimationFrame(animate);
-
-      cube.rotation.x += 0.07;
-      cube.rotation.y += 0.04;
-
+      //renderedShape.rotation.x += 0.001;
+      //renderedShape.rotation.y += 0.01;
       renderer.render(scene, camera);
       gl.endFrameEXP();
     }
     animate();
   }
+
 }
 
 
