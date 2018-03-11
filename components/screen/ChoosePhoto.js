@@ -1,26 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Button, View, Text } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import { styles } from './style';
 
-export default class EndWin extends React.Component {
-  render(){
-    return(
-      <View style={styles.body}>
-        <Text>You Won!</Text>
-        <Text>scores: 100</Text>
+export default class Home extends React.Component {
+
+  render() {
+    return (
+      <View>
 
         <Button
-          title="Next Level"
+          title='Camera to take photo'
           onPress={() => this.props.navigation.navigate('Game')}
         />
 
         <Button
-          title="Play Again"
+          title='Making a constallation of your photo'
           onPress={() => this.props.navigation.navigate('Game')}
         />
+
       </View>
     )
-
   }
 }
