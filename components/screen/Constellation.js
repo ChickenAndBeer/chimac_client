@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, View } from "react-native";
+import { Button, View, Text } from "react-native";
 import { StackNavigator } from "react-navigation";
 
 import Expo from "expo";
@@ -10,8 +10,8 @@ import ExpoTHREE from "expo-three"; // 2.0.2
 console.disableYellowBox = true;
 
 export default class Constellation extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       sceneShapes: []
     }
@@ -19,6 +19,7 @@ export default class Constellation extends React.Component {
 
   render() {
     return (
+
       <Expo.GLView
         ref={(ref) => this._glView = ref}
         style={{ flex: 1 }}
@@ -28,6 +29,10 @@ export default class Constellation extends React.Component {
   }
 
   _onGLContextCreate = async (gl) => {
+    console.log('EXPO PROPS', this.props)
+    const colorsArr = this.props.info.colors
+    let colorLength = colorsArr.length
+    const wordsArr = this.props.info.words.concepts
     const width = gl.drawingBufferWidth;
     const height = gl.drawingBufferHeight;
     const arSession = await this._glView.startARSessionAsync();
@@ -39,14 +44,15 @@ export default class Constellation extends React.Component {
 
    // const colors= ['0x7ac7fe', '#fa8072' ]
     let renderedShape;
+    for (let i = 0; i<colorLength; i++) {
+      const shape = new THREE.IcosahedronBufferGeometry(2.2, 0)
+      let newColor = '0x' + colorsArr[i]['raw_hex'].slice(1)
 
-    for (let i = 0; i<7; i++) {
-      const shape = new THREE.IcosahedronBufferGeometry(1.8, 0)
-      const material = new THREE.MeshBasicMaterial({ color: 0x7ac7fe });
+      const material = new THREE.MeshBasicMaterial({ color: Number(newColor) });
       renderedShape = new THREE.Mesh(shape, material);
-      renderedShape.position.z = Math.round(Math.random()*100)*-0.1;
-      renderedShape.position.y = Math.round(Math.random()*300)*0.1;
-      renderedShape.position.x = Math.round(Math.random()*300)*0.1;
+      renderedShape.position.z = Math.round(Math.random()*250)*-0.1;
+      renderedShape.position.y = Math.round(Math.random()*200)*0.1;
+      renderedShape.position.x = Math.round(Math.random()*100)*0.1;
       this.state.sceneShapes.push(renderedShape)
     }
 
@@ -65,3 +71,6 @@ export default class Constellation extends React.Component {
   }
 
 }
+
+
+
