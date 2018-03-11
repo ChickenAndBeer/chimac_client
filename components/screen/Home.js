@@ -1,21 +1,45 @@
 import React, { Component } from 'react';
-import { Button, View, Text } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+
+import BackgroundImg from './BackgroundImg';
 
 export default class Home extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
 
-        <Text>CONSTALAY</Text>
+        <BackgroundImg source={require('../assets/home.png')} />
 
-        <Button
-          title='Make your constellation'
-          onPress={() => this.props.navigation.navigate('Game')}
-        />
+        <TouchableOpacity
+        style={styles.button}
+        onPress={() => this.props.navigation.navigate('Game')}
+      >
+        <Text style={styles.text}> Make Your Constellation </Text>
+      </TouchableOpacity>
 
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    opacity: 0.5,
+    padding: 10,
+    top: 380,
+    position: 'absolute'
+  },
+  text: {
+    color: '#3f348c',
+    fontFamily: 'Arial'
+  }
+})
