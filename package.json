@@ -20,9 +20,12 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "clarifai": "^2.6.0",
     "expo": "^25.0.0",
     "expo-graphics": "0.0.3",
     "expo-three": "2.0.2",
+    "install": "^0.10.4",
+    "npm": "^5.7.1",
     "prop-types": "^15.6.1",
     "react": "16.2.0",
     "react-native": "0.52.0",
