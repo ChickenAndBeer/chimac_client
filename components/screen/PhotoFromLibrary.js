@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { CLARIFAI_KEY } from '../../secrets'
 import Clarifai from 'clarifai'
+import Constellation from './Constellation';
+
 
 import {
-  AppRegistry,
   Text,
   View,
   ImagePickerIOS,
@@ -80,6 +81,7 @@ export default class PhotoFromLibrary extends Component {
         </TouchableOpacity>
           </View>
         }
+        {this.state.colors && <Constellation props={this.state} />}
       </View>
     );
   }
