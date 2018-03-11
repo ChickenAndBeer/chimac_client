@@ -14,11 +14,10 @@ export default class Home extends React.Component {
 
         <TouchableOpacity
         style={styles.button}
-        onPress={() => this.props.navigation.navigate('ChoosePhoto')}
+        onPress={() => this.props.navigation.navigate('Game')}
       >
         <Text style={styles.text}> Make Your Constellation </Text>
       </TouchableOpacity>
-
 
       </View>
     )
