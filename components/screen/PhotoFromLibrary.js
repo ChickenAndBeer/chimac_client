@@ -33,7 +33,7 @@ export default class PhotoFromLibrary extends Component {
 
   handleClarifai() {
     const clarifai = new Clarifai.App({
-      apiKey: "ec0c2c0336f54451a8bdbf17d4bc59aa"
+      apiKey: CLARIFAI_KEY.apiKey
     });
 
     process.nextTick = setImmediate; // RN polyfill
