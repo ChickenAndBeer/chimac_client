@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, View } from "react-native";
+import { Button, View, Text } from "react-native";
 import { StackNavigator } from "react-navigation";
 
 import Expo from "expo";
@@ -19,6 +19,7 @@ export default class Constellation extends React.Component {
 
   render() {
     return (
+
       <Expo.GLView
         ref={(ref) => this._glView = ref}
         style={{ flex: 1 }}
@@ -30,6 +31,7 @@ export default class Constellation extends React.Component {
   _onGLContextCreate = async (gl) => {
     console.log('EXPO PROPS', this.props)
     const colorsArr = this.props.info.colors
+    let colorLength = colorsArr.length
     const wordsArr = this.props.info.words.concepts
     const width = gl.drawingBufferWidth;
     const height = gl.drawingBufferHeight;
@@ -42,15 +44,15 @@ export default class Constellation extends React.Component {
 
    // const colors= ['0x7ac7fe', '#fa8072' ]
     let renderedShape;
-    for (let i = 0; i<3; i++) {
+    for (let i = 0; i<colorLength; i++) {
       const shape = new THREE.IcosahedronBufferGeometry(2.2, 0)
       let newColor = '0x' + colorsArr[i]['raw_hex'].slice(1)
 
       const material = new THREE.MeshBasicMaterial({ color: Number(newColor) });
       renderedShape = new THREE.Mesh(shape, material);
-      renderedShape.position.z = Math.round(Math.random()*100)*-0.1;
-      renderedShape.position.y = Math.round(Math.random()*300)*0.1;
-      renderedShape.position.x = Math.round(Math.random()*300)*0.1;
+      renderedShape.position.z = Math.round(Math.random()*250)*-0.1;
+      renderedShape.position.y = Math.round(Math.random()*200)*0.1;
+      renderedShape.position.x = Math.round(Math.random()*100)*0.1;
       this.state.sceneShapes.push(renderedShape)
     }
 
