@@ -58,6 +58,7 @@ export default class PhotoFromLibrary extends Component {
         console.log(res.outputs[0].data.colors);
         this.setState({
           ...this.state,
+          image: null,
           colors: res.outputs[0].data.colors
         });
         console.log("CLARIFAI STATE", this.state);
@@ -81,7 +82,7 @@ export default class PhotoFromLibrary extends Component {
         </TouchableOpacity>
           </View>
         }
-        {this.state.colors && <Constellation props={this.state} />}
+        {this.state.colors && <Constellation info={this.state} />}
       </View>
     );
   }
