@@ -12,7 +12,7 @@ export default class Home extends React.Component {
 
         <Button
           title='Make your constellation'
-          onPress={() => this.props.navigation.navigate('ChoosePhoto')}
+          onPress={() => this.props.navigation.navigate('Game')}
         />
 
       </View>
