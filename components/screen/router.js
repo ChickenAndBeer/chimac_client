@@ -3,13 +3,21 @@ import { StackNavigator, TabNavigator } from 'react-navigation';
 
 // All Components
 import Home from './Home'
-import Game from './Game'
+import PhotoFromLibrary from './PhotoFromLibrary'
+import TakePhoto from './TakePhoto'
+import ChoosePhoto from './ChoosePhoto'
 
 export const RootStack = StackNavigator({
   Home: {
     screen: Home
   },
-  Game: {
-    screen: Game
+  PhotoFromLibrary: {
+    screen: PhotoFromLibrary
+  },
+  TakePhoto: {
+    screen: TakePhoto
+  },
+  ChoosePhoto: {
+    screen: ChoosePhoto
   }
 })
