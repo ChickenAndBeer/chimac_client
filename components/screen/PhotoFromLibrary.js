@@ -33,27 +33,42 @@ export default class PhotoFromLibrary extends Component {
 
   handleClarifai() {
     const clarifai = new Clarifai.App({
-      apiKey: "ec0c2c0336f54451a8bdbf17d4bc59aa"
-    })
+      apiKey: CLARIFAI_KEY.apiKey
+    });
 
-    process.nextTick = setImmediate // RN polyfill
+    process.nextTick = setImmediate; // RN polyfill
 
     const data = this.state.image;
-    console.log(data)
-    const file = {base64: data}
+    const url =
+      "https://i.pinimg.com/736x/ba/02/d5/ba02d550c134b26f35cb55d116453bba--beautiful-mind-beautiful-night-sky.jpg";
 
-    clarifai.models.predict(Clarifai.GENERAL_MODEL, "https://samples.clarifai.com/metro-north.jpg")
+    clarifai.models
+      .predict(Clarifai.GENERAL_MODEL, url)
       .then(res => {
-        console.log(res.outputs[0].data)
+        console.log(res.outputs[0].data);
+        this.setState({ ...this.state, words: res.outputs[0].data });
+        console.log("CLARIFAI STATE", this.state);
       })
-      .catch(Error)
+      .catch(Error);
+
+    clarifai.models
+      .predict("eeed0b6733a644cea07cf4c60f87ebb7", url)
+      .then(res => {
+        console.log(res.outputs[0].data.colors);
+        this.setState({
+          ...this.state,
+          colors: res.outputs[0].data.colors
+        });
+        console.log("CLARIFAI STATE", this.state);
+      })
+      .catch(Error);
   }
 
   render() {
     console.log('STATE', this.state)
     return (
       <View style={{ flex: 1 }}>
-        {this.state.image?
+        {this.state.image &&
           <View style={{ flex: 1 }}>
           <Image style={{ flex: 1 }} source={{ uri: this.state.image }} />
 
@@ -64,11 +79,7 @@ export default class PhotoFromLibrary extends Component {
           <Text style={styles.text}> Make Your Constellation </Text>
         </TouchableOpacity>
           </View>
-           :
-          null
         }
-
-
       </View>
     );
   }
