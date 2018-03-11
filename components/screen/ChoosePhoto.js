@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, View, Text } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
-export default class Home extends React.Component {
+export default class ChoosePhoto extends React.Component {
 
   render() {
     return (
@@ -10,15 +10,16 @@ export default class Home extends React.Component {
 
         <Button
           title='Camera to take photo'
-          onPress={() => this.props.navigation.navigate('Game')}
+          onPress={() => this.props.navigation.navigate('TakePhoto')}
         />
 
         <Button
           title='Making a constallation of your photo'
-          onPress={() => this.props.navigation.navigate('Game')}
+          onPress={() => this.props.navigation.navigate('PhotoFromLibrary')}
         />
 
       </View>
     )
   }
 }
+
