@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Button, View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { StackNavigator } from "react-navigation";
 import EmptyBG from "./EmptyBG";
-import BackgroundImg from './BackgroundImg';
 
 
 export default class PlanetProfile extends React.Component {
@@ -10,7 +9,7 @@ export default class PlanetProfile extends React.Component {
     console.log(this.props);
     return (
       <View style={styles.container}>
-        <BackgroundImg source={require("../assets/background.png")} />
+        <EmptyBG source={require("../assets/background.png")} />
         <Image style={styles.planet} source={require('../assets/ballon.png')} />
 
         <Text style={styles.text}>Your Choice: </Text>
@@ -47,7 +46,7 @@ const styles = StyleSheet.create({
 
   },
   container: {
-    flex: 3,
+    flex: 1,
     justifyContent: "center",
     alignItems: "center"
   },
