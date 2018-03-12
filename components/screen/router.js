@@ -6,6 +6,7 @@ import Home from './Home'
 import PhotoFromLibrary from './PhotoFromLibrary'
 import TakePhoto from './TakePhoto'
 import ChoosePhoto from './ChoosePhoto'
+import PlanetProfile from './PlanetProfile'
 
 export const RootStack = StackNavigator({
   Home: {
@@ -19,5 +20,8 @@ export const RootStack = StackNavigator({
   },
   ChoosePhoto: {
     screen: ChoosePhoto
+  },
+  PlanetProfile: {
+    screen: PlanetProfile
   }
 })

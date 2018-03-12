@@ -1,9 +1,18 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Button, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { StackNavigator } from 'react-navigation';
 
 
 export default class RenderName extends React.Component {
+  constructor(){
+    super()
+    this._onPress = this._onPress.bind(this)
+  }
+
+  _onPress(){
+    this.props.profile.navigate('PlanetProfile')
+  }
+
   render() {
     const wordsArr = this.props.info.words.concepts
     //let colorLength = this.props.info.colors.length
@@ -17,15 +26,13 @@ export default class RenderName extends React.Component {
 
         {wordsArr.slice(1, 6).map((obj, i) => {
           return (
-          <Text key ={i} style={styles.text}>Planet of {obj.name}</Text> )
+            <Button key={obj.name}
+            sytle={styles.text}
+            onPress={this._onPress}
+            title={`Planet of ${obj.name}`}
+          />)
         })}
 
-        <TouchableOpacity
-        style={styles.button}
-        onPress={() => this.props.navigation.navigate('ChoosePhoto')}
-      >
-        <Text style={styles.text}> Choose Another Photo </Text>
-      </TouchableOpacity>
 
 
       </View>
@@ -49,6 +56,6 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#3f348c",
-    fontFamily: "Arial"
+    fontFamily: "Arial",
   }
 });

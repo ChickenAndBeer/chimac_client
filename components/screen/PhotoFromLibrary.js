@@ -3,6 +3,7 @@ import { CLARIFAI_KEY } from '../../secrets'
 import Clarifai from 'clarifai'
 import Constellation from './Constellation';
 import RenderName from './RenderName';
+import { StackNavigator } from 'react-navigation';
 
 
 import {
@@ -46,8 +47,12 @@ export default class PhotoFromLibrary extends Component {
 
     const url2 = 'https://wallpaper.wiki/wp-content/uploads/2017/05/Colorful-Wallpapers-HD-desktop-download.jpg'
 
+    const url3=
+    'http://st1.thehealthsite.com/wp-content/uploads/2015/01/lemon-leaves-for-vaginal-discharge.jpg'
+
+
     clarifai.models
-      .predict(Clarifai.GENERAL_MODEL, url2)
+      .predict(Clarifai.GENERAL_MODEL, url3)
       .then(res => {
         console.log(res.outputs[0].data);
         this.setState({ ...this.state, words: res.outputs[0].data });
@@ -56,7 +61,7 @@ export default class PhotoFromLibrary extends Component {
       .catch(Error);
 
     clarifai.models
-      .predict("eeed0b6733a644cea07cf4c60f87ebb7", url2)
+      .predict("eeed0b6733a644cea07cf4c60f87ebb7", url3)
       .then(res => {
         console.log(res.outputs[0].data.colors);
         this.setState({
@@ -86,7 +91,7 @@ export default class PhotoFromLibrary extends Component {
           </View>
         }
         {this.state.colors && <Constellation info={this.state} />}
-        {this.state.words && <RenderName  info={this.state} />}
+        {this.state.words && <RenderName  info={this.state} profile={this.props.navigation}/>}
       </View>
     );
   }
