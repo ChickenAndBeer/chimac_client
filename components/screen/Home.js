@@ -11,12 +11,13 @@ export default class Home extends React.Component {
       <View style={styles.container}>
 
         <BackgroundImg source={require('../assets/home.png')} />
+        <Text style={styles.tagLine}> Use the colors of your photos to make AR planets </Text>
 
         <TouchableOpacity
         style={styles.button}
         onPress={() => this.props.navigation.navigate('ChoosePhoto')}
       >
-        <Text style={styles.text}> Make Your Constellation </Text>
+        <Text style={styles.text}> Make Planets </Text>
       </TouchableOpacity>
 
 
@@ -36,9 +37,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     opacity: 0.5,
     padding: 10,
-    top: 380,
+    top: 400,
     position: 'absolute'
   },
+  tagLine: {
+    alignItems: 'center',
+    color: '#FFFFFF',
+    opacity: 0.9,
+    padding: 10,
+    top: 350,
+    position: 'absolute'
+  },
+
   text: {
     color: '#3f348c',
     fontFamily: 'Arial'
